@@ -1,0 +1,250 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.overlay {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-height: 85vh;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+}
+
+.form-box h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.form-box h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, #4a90e2, #357abd);
+    border-radius: 2px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+label {
+    font-weight: 500;
+    color: #34495e;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+    background: #fff;
+}
+
+button {
+    background: linear-gradient(to right, #4a90e2, #357abd);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background: linear-gradient(to right, #357abd, #2c6aa0);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.todos-list {
+    margin-top: 2.5rem;
+    border-top: 2px solid #eef2f7;
+    padding-top: 2rem;
+}
+
+.todos-list h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.todo-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid #eef2f7;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.todo-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.todo-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.todo-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-title {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.todo-date {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.todo-date::before {
+    content: '🕒';
+    font-size: 0.9rem;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.edit-btn, .delete-btn {
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.edit-btn {
+    background: linear-gradient(to right, #28a745, #218838);
+}
+
+.edit-btn:hover {
+    background: linear-gradient(to right, #218838, #1e7e34);
+}
+
+.delete-btn {
+    background: linear-gradient(to right, #dc3545, #c82333);
+}
+
+.delete-btn:hover {
+    background: linear-gradient(to right, #c82333, #bd2130);
+}
+
+.form-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.form-box::-webkit-scrollbar-thumb {
+    background: #c3cfe2;
+    border-radius: 4px;
+}
+
+.form-box::-webkit-scrollbar-thumb:hover {
+    background: #a5b4cb;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-box {
+        padding: 1.5rem;
+    }
+
+    .todo-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .todo-actions {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .edit-btn, .delete-btn {
+        padding: 0.75rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
