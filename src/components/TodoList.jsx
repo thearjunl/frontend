@@ -16,7 +16,7 @@ const TodoList = () => {
 
     const fetchTodos = async () => {
         try {
-            const response = await axios.get("http://localhost:3001/item");
+            const response = await axios.get("https://todo-zpip.onrender.com/item");
             setTodos(response.data);
         } catch (error) {
             console.error("Error fetching todos:", error);
@@ -30,7 +30,7 @@ const TodoList = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3001/item", todo);
+            await axios.post("https://todo-zpip.onrender.com/item", todo);
             setTodo({ title: "" });
             fetchTodos(); // Refresh the list after adding
             alert("Todo added successfully!");
@@ -42,7 +42,7 @@ const TodoList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3001/item/${id}`);
+            await axios.delete(`https://todo-zpip.onrender.com/item/${id}`);
             fetchTodos(); // Refresh the list after deleting
             alert("Todo deleted successfully!");
         } catch (error) {
@@ -60,7 +60,7 @@ const TodoList = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:3001/item/${editingTodo._id}`, todo);
+            await axios.put(`https://todo-zpip.onrender.com/item/${editingTodo._id}`, todo);
             setTodo({ title: "" });
             setIsEditing(false);
             setEditingTodo(null);
