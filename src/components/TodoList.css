@@ -67,6 +67,7 @@ input {
     font-size: 1rem;
     transition: all 0.3s ease;
     background: #f8f9fa;
+    color: #34495e;
 }
 
 input:focus {
@@ -165,31 +166,44 @@ button:active {
 
 .todo-actions {
     display: flex;
-    gap: 0.75rem;
+    gap: 10px;
 }
 
-.edit-btn, .delete-btn {
-    padding: 0.75rem 1.25rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
+.edit-btn, .delete-btn, .cancel-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .edit-btn {
-    background: linear-gradient(to right, #28a745, #218838);
+    background-color: #4CAF50;
+    color: white;
 }
 
 .edit-btn:hover {
-    background: linear-gradient(to right, #218838, #1e7e34);
+    background-color: #45a049;
 }
 
 .delete-btn {
-    background: linear-gradient(to right, #dc3545, #c82333);
+    background-color: #f44336;
+    color: white;
 }
 
 .delete-btn:hover {
-    background: linear-gradient(to right, #c82333, #bd2130);
+    background-color: #da190b;
+}
+
+.cancel-btn {
+    background-color: #9e9e9e;
+    color: white;
+    margin-left: 10px;
+}
+
+.cancel-btn:hover {
+    background-color: #757575;
 }
 
 .form-box::-webkit-scrollbar {

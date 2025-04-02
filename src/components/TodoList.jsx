@@ -7,7 +7,8 @@ const TodoList = () => {
         title: "",
     });
     const [todos, setTodos] = useState([]);
-
+    const [editingTodo, setEditingTodo] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         fetchTodos();
@@ -39,12 +40,44 @@ const TodoList = () => {
         }
     }
 
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:3001/item/${id}`);
+            fetchTodos(); // Refresh the list after deleting
+            alert("Todo deleted successfully!");
+        } catch (error) {
+            console.error("Error deleting todo:", error);
+            alert("Failed to delete todo.");
+        }
+    }
+
+    const handleEdit = (todo) => {
+        setEditingTodo(todo);
+        setIsEditing(true);
+        setTodo({ title: todo.title });
+    }
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.put(`http://localhost:3001/item/${editingTodo._id}`, todo);
+            setTodo({ title: "" });
+            setIsEditing(false);
+            setEditingTodo(null);
+            fetchTodos(); // Refresh the list after updating
+            alert("Todo updated successfully!");
+        } catch (error) {
+            console.error("Error updating todo:", error);
+            alert("Failed to update todo.");
+        }
+    }
+
     return (
         <div className="form-container">
             <div className="overlay">
                 <div className="form-box">
-                    <h2>Add New Todo</h2>
-                    <form onSubmit={handleSubmit}>
+                    <h2>{isEditing ? 'Edit Todo' : 'Add New Todo'}</h2>
+                    <form onSubmit={isEditing ? handleUpdate : handleSubmit}>
                         <label>Title:</label>
                         <input 
                             type="text" 
@@ -54,7 +87,20 @@ const TodoList = () => {
                             name="title" 
                             required 
                         />
-                        <button type="submit">Submit</button>
+                        <button type="submit">{isEditing ? 'Update' : 'Submit'}</button>
+                        {isEditing && (
+                            <button 
+                                type="button" 
+                                onClick={() => {
+                                    setIsEditing(false);
+                                    setEditingTodo(null);
+                                    setTodo({ title: "" });
+                                }}
+                                className="cancel-btn"
+                            >
+                                Cancel
+                            </button>
+                        )}
                     </form>
 
                     <div className="todos-list">
@@ -69,8 +115,18 @@ const TodoList = () => {
                                         </span>
                                     </div>
                                     <div className="todo-actions">
-                                        <button className="edit-btn">Edit</button>
-                                        <button className="delete-btn">Delete</button>
+                                        <button 
+                                            className="edit-btn"
+                                            onClick={() => handleEdit(item)}
+                                        >
+                                            Edit
+                                        </button>
+                                        <button 
+                                            className="delete-btn"
+                                            onClick={() => handleDelete(item._id)}
+                                        >
+                                            Delete
+                                        </button>
                                     </div>
                                 </div>
                             </div>
